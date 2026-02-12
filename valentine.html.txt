@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Valentine gửi Embe Linh 💖</title>
+
+<style>
+body{
+    margin:0;
+    height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    font-family:"Segoe UI",sans-serif;
+    overflow:hidden;
+    background:linear-gradient(135deg,#ffdde1,#ee9ca7,#fad0c4);
+    background-size:400% 400%;
+    animation: bgmove 10s infinite alternate;
+}
+
+@keyframes bgmove{
+    0%{background-position:0% 50%;}
+    100%{background-position:100% 50%;}
+}
+
+/* Card */
+.card{
+    background:rgba(255,255,255,0.95);
+    padding:45px 35px;
+    border-radius:25px;
+    text-align:center;
+    max-width:400px;
+    box-shadow:0 15px 40px rgba(0,0,0,0.2);
+    backdrop-filter:blur(5px);
+}
+
+h1{
+    color:#ff4d6d;
+    margin-bottom:20px;
+    font-size:26px;
+}
+
+#message{
+    font-size:18px;
+    color:#333;
+    min-height:110px;
+    line-height:1.6;
+    font-weight:500;
+}
+
+button{
+    margin-top:25px;
+    padding:12px 35px;
+    border:none;
+    border-radius:30px;
+    background:linear-gradient(45deg,#ff4d6d,#ff85a1);
+    color:white;
+    font-size:16px;
+    cursor:pointer;
+    box-shadow:0 5px 15px rgba(255,77,109,0.4);
+    transition:0.3s;
+}
+
+button:hover{
+    transform:scale(1.08);
+}
+
+/* Floating bubbles */
+.bubble{
+    position:absolute;
+    bottom:-50px;
+    width:20px;
+    height:20px;
+    background:rgba(255,255,255,0.6);
+    border-radius:50%;
+    animation: rise 8s linear infinite;
+}
+
+@keyframes rise{
+    from{
+        transform:translateY(0);
+        opacity:1;
+    }
+    to{
+        transform:translateY(-110vh);
+        opacity:0;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="card">
+    <h1>Happy Valentine 💝</h1>
+    <div id="message"></div>
+    <button onclick="start()">Mở lời chúc</button>
+</div>
+
+<script>
+const text =
+"Anh chúc Embe Linh một ngày Valentine thật ngọt ngào.\n" +
+"Mong Embe Linh luôn vui vẻ, hạnh phúc và được yêu thương thật nhiều.\n" +
+"Cảm ơn vì đã làm thế giới của anh trở nên dễ thương hơn mỗi ngày 💖";
+
+function start(){
+    document.querySelector("button").style.display="none";
+    const el=document.getElementById("message");
+    let i=0;
+    const typing=setInterval(()=>{
+        el.innerHTML+= text[i]==="\n" ? "<br>" : text[i];
+        i++;
+        if(i>=text.length) clearInterval(typing);
+    },55);
+}
+
+/* tạo bong bóng */
+setInterval(()=>{
+    const bubble=document.createElement("div");
+    bubble.className="bubble";
+    bubble.style.left=Math.random()*100+"vw";
+    bubble.style.width=bubble.style.height=(Math.random()*20+10)+"px";
+    document.body.appendChild(bubble);
+    setTimeout(()=>bubble.remove(),8000);
+},500);
+</script>
+
+</body>
+</html>
